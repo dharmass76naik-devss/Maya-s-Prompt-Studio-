@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maya's Prompt Studio — AI & Photo Editing Prompts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        <span>Maya's <strong>Studio</strong></span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#prompts" class="active">Trending Prompts</a>
+        <a href="#generator">Prompt Builder</a>
+        <a href="#tips">Editing Tips</a>
+        <a href="#saved">Saved (<span id="savedCount">0</span>)</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="badge">✨ Next-Gen Photo Prompts</span>
+      <h1>Craft Stunning AI Photos & Lightmaps</h1>
+      <p>Tested high-converting prompts for Midjourney, DALL-E, Stable Diffusion, and Lightroom presets.</p>
+
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search prompts (e.g. Cyberpunk, Portrait, Moody)...">
+        <button id="clearSearch" class="hidden">&times;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <main class="main-container">
+
+    <!-- Filter Categories -->
+    <section class="filters-section">
+      <div class="categories-scroll" id="categoriesScroll">
+        <button class="cat-chip active" data-cat="all">All Prompts</button>
+        <button class="cat-chip" data-cat="portrait">Cinematic Portraits</button>
+        <button class="cat-chip" data-cat="cyberpunk">Cyberpunk & Neon</button>
+        <button class="cat-chip" data-cat="lightroom">Lightroom Aesthetics</button>
+        <button class="cat-chip" data-cat="surreal">Surreal & Dreamy</button>
+        <button class="cat-chip" data-cat="product">Product & Commercial</button>
+        <button class="cat-chip" data-cat="saved">❤️ My Saved</button>
+      </div>
+    </section>
+
+    <!-- Prompts Showcase Grid -->
+    <section id="prompts" class="prompts-section">
+      <div class="section-header">
+        <h2>Trending Studio Prompts</h2>
+        <p>Click any prompt card to copy instantly or save to favorites.</p>
+      </div>
+
+      <div class="prompts-grid" id="promptsGrid">
+        <!-- JS will populate cards here -->
+      </div>
+    </section>
+
+    <!-- Interactive Prompt Generator Studio Tool -->
+    <section id="generator" class="generator-section">
+      <div class="generator-card">
+        <div class="gen-header">
+          <span class="gen-badge">EXCLUSIVE TOOL</span>
+          <h2>Studio Custom Prompt Builder</h2>
+          <p>Mix & match lighting, subject, lens, and mood to build your custom high-detail AI prompt.</p>
+        </div>
+
+        <div class="builder-grid">
+          <div class="builder-group">
+            <label>Subject</label>
+            <select id="genSubject">
+              <option value="Portrait of a woman with freckles and glowing eyes">Portrait of Woman</option>
+              <option value="A futuristic street photographer in rain">Futuristic Street Photographer</option>
+              <option value="A sleek luxury sports car resting on reflective asphalt">Luxury Sports Car</option>
+              <option value="A mystical forest cottage surrounded by floating bioluminescent particles">Mystical Cottage</option>
+              <option value="An astronaut walking through an emerald neon alleyway">Neon Astronaut</option>
+            </select>
+          </div>
+
+          <div class="builder-group">
+            <label>Lighting Style</label>
+            <select id="genLighting">
+              <option value="dramatic rim lighting with neon blue and magenta reflections">Dramatic Neon Rim Light</option>
+              <option value="soft golden hour sunlight passing through sheer curtains">Golden Hour Sunlight</option>
+              <option value="moody volumetric fog with sharp zenith spotlight">Moody Fog & Spotlight</option>
+              <option value="cinematic high contrast chiaroscuro lighting">Chiaroscuro Shadows</option>
+            </select>
+          </div>
+
+          <div class="builder-group">
+            <label>Camera & Lens</label>
+            <select id="genCamera">
+              <option value="shot on 85mm f/1.2 lens, shallow depth of field, sharp focus on eyes">85mm f/1.2 (Portrait Bokeh)</option>
+              <option value="shot on 35mm Hasselblad medium format, ultra detailed texture">35mm Medium Format</option>
+              <option value="cinematic anamorphic lens, subtle horizontal lens flare, 8k resolution">Anamorphic Cinematic</option>
+              <option value="macro lens 100mm, extreme micro detail, crisp reflection">100mm Macro Detail</option>
+            </select>
+          </div>
+
+          <div class="builder-group">
+            <label>Color Tone & Mood</label>
+            <select id="genMood">
+              <option value="teal and orange color grading, film grain texture, high dynamic range">Teal & Orange Film</option>
+              <option value="monochrome high contrast, deep blacks, grainy vintage photo aesthetic">Moody Black & White</option>
+              <option value="cyberpunk palette, hyperrealistic 8k, photorealistic octane render">Cyberpunk Photorealistic</option>
+              <option value="pastel colors, soft dreamy bloom filter, editorial Vogue style">Pastel Editorial Vogue</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="builder-output">
+          <label>Generated Prompt Code:</label>
+          <div class="output-box" id="generatedOutput">Select options above to construct your custom studio prompt.</div>
+          <div class="builder-actions">
+            <button class="btn btn-primary" id="copyGeneratedBtn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              Copy Custom Prompt
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo Editing & Lighting Tips -->
+    <section id="tips" class="tips-section">
+      <div class="section-header">
+        <h2>Pro Photo Editing & Prompting Tips</h2>
+        <p>Master lighting syntax, aspect ratios, and color grading keywords.</p>
+      </div>
+
+      <div class="tips-grid">
+        <article class="tip-card">
+          <div class="tip-icon">💡</div>
+          <h3>1. Subject First Syntax</h3>
+          <p>Always place your core subject in the first 5 words. Generators pay the highest weight to initial tokens. Example: <em>"A cyborg cyber artist, high contrast..."</em> works better than long intros.</p>
+        </article>
+
+        <article class="tip-card">
+          <div class="tip-icon">📸</div>
+          <h3>2. Lens & Focal Length Magic</h3>
+          <p>Specify focal lengths: <strong>85mm</strong> for flattering portraits without distortion, <strong>24mm</strong> for dynamic environmental angles, and <strong>100mm Macro</strong> for intricate detail rendering.</p>
+        </article>
+
+        <article class="tip-card">
+          <div class="tip-icon">🎨</div>
+          <h3>3. Color Grading Terms</h3>
+          <p>Instead of generic "colorful", use terms like <em>"Kodak Portra 400 aesthetic"</em>, <em>"Teal & Orange split toning"</em>, or <em>"Cinematic volumetric haze"</em> for exact color profiles.</p>
+        </article>
+
+        <article class="tip-card">
+          <div class="tip-icon">✨</div>
+          <h3>4. Negative Prompt Secrets</h3>
+          <p>Avoid unwanted glitches by including keywords like: <em>"deformed limbs, extra fingers, oversaturated glow, blur, low quality, artifacts, watermark"</em> in your negative prompt settings.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">Prompt copied to clipboard!</div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Maya's Prompt Studio</h3>
+        <p>Crafting high-quality prompt blueprints for digital creators, photographers & AI artists.</p>
+      </div>
+      <div class="footer-bottom">
+        <p>© Maya's Studio • Built for Mobile & Web Performance</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
